@@ -1,0 +1,187 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hoja de clase: El papel picado y el altar</title><style>
+:root{--bg:#fffaf3;--card:#ffffff;--ink:#22262e;--muted:#5d6675;--line:#e3e7ec;--accent:#e4572e;--teal:#0e8a8c;--purple:#6b4fbb;--mag:#b0379b;--amber:#d98200;--blue:#2b6cd4;--hl:#fff3a3;--lock:#9aa3ad;--ok:#1f9d55;--bad:#d6453d;--gold:#c9a227}
+@media(prefers-color-scheme:dark){:root{--bg:#171a20;--card:#20242c;--ink:#eef0f3;--muted:#aab2bd;--line:#333a45;--hl:#6b5d12;--lock:#6b7480}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:"Segoe UI",Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink);line-height:1.55;font-size:17px}
+.wrap{max-width:900px;margin:0 auto;padding:12px 16px 90px}
+header.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:2px solid var(--line);padding:8px 0 6px}
+.titlebar{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.titlebar h1{font-size:1.25rem;margin:0;flex:1;min-width:200px}
+.titlebar .fly{width:46px;height:36px;flex:none}
+.code{display:flex;gap:6px;align-items:center;font-weight:800}
+.code span{display:inline-block;width:28px;height:34px;border:2px dashed var(--lock);border-radius:7px;text-align:center;line-height:30px;font-size:1.1rem;background:var(--card)}
+.code span.on{border:2px solid var(--accent);color:var(--accent)}
+nav.rooms{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+nav.rooms button{border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:5px 12px;font-weight:700;cursor:pointer;font-size:.9rem}
+nav.rooms button.active{border-color:var(--accent);color:var(--accent)}
+nav.rooms button.locked{opacity:.55;cursor:not-allowed}
+nav.rooms button.done{border-color:var(--ok)}
+.teacher{background:var(--gold);color:#222;font-weight:800;text-align:center;padding:6px;border-radius:8px;margin:8px 0;display:none}
+section.room{display:none;padding-top:10px}
+section.room.show{display:block}
+.card{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:16px 18px;margin:14px 0}
+.card h2{margin:0 0 6px;font-size:1.5rem;color:var(--accent)}
+.card h3{margin:16px 0 6px;font-size:1.15rem}
+.box{border-left:6px solid var(--teal);background:color-mix(in srgb,var(--teal) 10%,var(--card));border-radius:10px;padding:10px 14px;margin:12px 0}
+.box.conn{border-color:var(--purple);background:color-mix(in srgb,var(--purple) 10%,var(--card))}
+.box.la{border-color:var(--amber);background:color-mix(in srgb,var(--amber) 12%,var(--card))}
+.box.story{border-color:var(--mag);background:color-mix(in srgb,var(--mag) 8%,var(--card));font-size:1.08rem}
+.box b.t{display:block;margin-bottom:4px}
+.pass{transition:background .3s;border-radius:6px;padding:2px 4px;margin:0 -4px}
+.pass.hl{background:var(--hl);outline:3px solid var(--amber)}
+table.big{width:100%;border-collapse:collapse;margin:10px 0;font-size:.95rem}
+table.big th,table.big td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+table.big th{background:color-mix(in srgb,var(--teal) 18%,var(--card))}
+figure.zoom{margin:12px auto;text-align:center;cursor:zoom-in;max-width:420px}
+figure.zoom svg{width:100%;height:auto;border-radius:14px;background:#fff;border:2px solid var(--line)}
+figure.zoom figcaption{font-size:.85rem;color:var(--muted);margin-top:4px}
+.lightbox{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:center;justify-content:center;z-index:50;padding:20px;cursor:zoom-out}
+.lightbox.show{display:flex}.lightbox svg{max-width:95vw;max-height:90vh;width:900px;height:auto;background:#fff;border-radius:16px}
+.btn{border:none;border-radius:10px;padding:8px 14px;font-weight:700;cursor:pointer;background:var(--teal);color:#fff;font-size:.95rem;margin:3px}
+.btn.alt{background:var(--card);color:var(--ink);border:2px solid var(--line)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.good{background:var(--ok)}.btn.badb{background:var(--bad)}
+.tryit .item{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:8px;border:2px solid var(--line);border-radius:10px;margin:6px 0}
+.tryit .item .txt{flex:1;min-width:160px;font-weight:700}
+.tryit .item.ok{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 10%,var(--card))}
+.tryit .item.ok .btn{display:none}.tryit .item.ok:after{content:"✓ " attr(data-cat);color:var(--ok);font-weight:800}
+.explorer .tabs{display:flex;flex-wrap:wrap;gap:6px}.explorer .pane{display:none;padding:10px 0}.explorer .pane.show{display:block}
+.discuss textarea{width:100%;min-height:90px;border:2px solid var(--line);border-radius:10px;padding:10px;font:inherit;background:var(--bg);color:var(--ink)}
+.saved{font-size:.85rem;color:var(--muted)}
+.lockbox{border:3px dashed var(--lock);border-radius:16px;padding:16px;margin:16px 0;text-align:center}
+.lockbox.ready{border-style:solid;border-color:var(--accent)}
+.lockbox .q{text-align:left;margin:10px 0;padding:10px;border:2px solid var(--line);border-radius:12px}
+.lockbox .q .ans{display:flex;flex-direction:column;gap:6px;margin-top:6px}
+.lockbox .q .ans button{text-align:left}
+.lockbox .status{font-weight:800;margin:6px 0}
+.progress{height:10px;background:var(--line);border-radius:5px;overflow:hidden;margin:8px 0}
+.progress i{display:block;height:100%;background:var(--teal);width:0;transition:width .5s}
+.why{width:100%;font-size:.9rem;color:var(--muted);font-style:italic}
+.item.ok .why{color:var(--ok)}
+.waitarea{text-align:left;margin:10px 0}.cards{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.flip{border:2px solid var(--line);background:var(--card);color:var(--ink);border-radius:12px;padding:10px 12px;font:inherit;font-weight:700;cursor:pointer;min-width:140px;text-align:center}
+.flip .b{display:none;color:var(--ok)}.flip.on .f{display:none}.flip.on .b{display:inline}
+.intro{border-color:var(--amber);background:color-mix(in srgb,var(--amber) 10%,var(--card))}
+.intro h2{color:var(--amber)}.intro ul{margin:6px 0 0 18px;padding:0}
+.timer{position:fixed;right:14px;bottom:70px;background:var(--amber);color:#222;font-weight:800;padding:10px 14px;border-radius:12px;display:none;z-index:40;box-shadow:0 4px 12px rgba(0,0,0,.25)}
+.timer.show{display:block}
+.totop{position:fixed;right:14px;bottom:16px;z-index:40;background:var(--accent);color:#fff;border:none;border-radius:999px;padding:10px 14px;font-weight:800;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.25)}
+.words input{width:100%;padding:10px;border:2px solid var(--line);border-radius:10px;font:inherit;background:var(--bg);color:var(--ink);margin-bottom:8px}
+.words dl{margin:0}.words dt{font-weight:800;margin-top:8px;color:var(--accent)}.words dd{margin:0 0 4px 0}
+.submit input{padding:8px;border:2px solid var(--line);border-radius:8px;font:inherit;background:var(--bg);color:var(--ink);margin:4px 6px 4px 0}
+.submit pre{white-space:pre-wrap;background:var(--bg);border:2px solid var(--line);border-radius:10px;padding:10px;font-size:.85rem;max-height:260px;overflow:auto}
+.bigcode{font-size:2.2rem;letter-spacing:.3em;font-weight:900;color:var(--accent);text-align:center;margin:10px 0}
+.pill{display:inline-block;background:color-mix(in srgb,var(--accent) 15%,var(--card));border-radius:999px;padding:2px 10px;font-weight:700;font-size:.85rem}
+.conj{display:grid;grid-template-columns:1fr 1fr;gap:4px 14px;font-size:1rem}.conj span b{color:var(--accent)}
+@media(max-width:520px){body{font-size:16px}.conj{grid-template-columns:1fr}.card{padding:12px}}
+
+    .vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+    .vcard{border:2px solid var(--line);border-radius:14px;padding:8px;text-align:center;background:var(--card)}
+    .vcard .vimg svg{width:100%;height:auto;border-radius:10px}.vcard b{display:block;color:var(--accent);margin-top:4px}.vcard span{font-size:.85rem;color:var(--muted)}
+    .steps{counter-reset:s}.step{display:flex;gap:10px;align-items:flex-start;margin:8px 0}.step i{flex:none;width:32px;height:32px;border-radius:50%;background:var(--accent);color:#fff;font-style:normal;font-weight:800;text-align:center;line-height:32px}
+    .video{aspect-ratio:16/9;border:3px dashed var(--amber);border-radius:14px;display:flex;align-items:center;justify-content:center;text-align:center;padding:16px;background:color-mix(in srgb,var(--amber) 10%,var(--card))}
+    .verbs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}.verbs div{border-left:5px solid;border-radius:8px;padding:6px 10px;background:var(--card);border-top:1px solid var(--line);border-right:1px solid var(--line);border-bottom:1px solid var(--line)}
+    </style></head>
+<body><div class="wrap"><header class="top"><div class="titlebar"><svg class="fly" viewBox="0 0 120 90" xmlns="http://www.w3.org/2000/svg"><ellipse cx="48" cy="34" rx="26" ry="12" transform="rotate(-28 48 34)" fill="#cfe9f7" stroke="#2b2f36" stroke-width="2.2"/><ellipse cx="88" cy="32" rx="26" ry="12" transform="rotate(24 88 32)" fill="#cfe9f7" stroke="#2b2f36" stroke-width="2.2"/><ellipse cx="66" cy="56" rx="24" ry="16" fill="#3a4049" stroke="#2b2f36" stroke-width="2.2"/><circle cx="96" cy="56" r="14" fill="#3a4049" stroke="#2b2f36" stroke-width="2.2"/><circle cx="100" cy="51" r="6.5" fill="#fff"/><circle cx="104" cy="61" r="5.5" fill="#fff"/><circle cx="101.5" cy="51.5" r="3" fill="#2b2f36"/><circle cx="105.5" cy="61.5" r="2.6" fill="#2b2f36"/><path d="M103 69 q4 3 7 0" stroke="#2b2f36" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M58 70 l-8 14 M70 72 l0 14 M82 70 l8 13" stroke="#2b2f36" stroke-width="2.4" stroke-linecap="round"/></svg><h1>Hoy: El papel picado y el altar · Español 2</h1></div>
+<nav class="rooms"><button onclick="location.hash='#a'">1. Instrucciones</button><button onclick="location.hash='#b'">2. Vocabulario</button><button onclick="location.hash='#c'">3. Verbos</button><button onclick="location.hash='#d'">4. Lectura</button><button onclick="location.hash='#e'">5. Video</button><button onclick="location.hash='#f'">6. Quiz</button></nav></header>
+
+<div class="card intro" id="a"><h2>🚪 Start here · Instructions</h2>
+<div class="steps">
+<div class="step"><i>1</i><div><b>Read</b> the vocabulary and the verb review (10 min).</div></div>
+<div class="step"><i>2</i><div><b>Read</b> the story about Lola and the altar (10 min). Use the cognates!</div></div>
+<div class="step"><i>3</i><div><b>Watch</b> the video (5 min).</div></div>
+<div class="step"><i>4</i><div><b>Take the quiz on Canvas</b> (15 min): vocabulary, verbs, reading and video questions.</div></div></div>
+<p>⏰ <b>You must finish everything before the end of class.</b> The Canvas quiz is a <b>quiz grade</b>. You may use your flashcards and this page while you take the quiz. Work quietly; if you have a question, raise your hand.</p></div>
+
+<div class="card" id="b"><h2>📚 Vocabulario del altar</h2>
+<div class="vgrid"><div class="vcard"><div class="vimg"><svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg"><rect width="400" height="300" fill="#fff8f0"/>
+<path d="M0 30 q100 14 200 0 q100 -14 200 0" stroke="#2b2f36" stroke-width="2" fill="none"/><rect x="20" y="34" width="44" height="52" fill="#f472b6" stroke="#2b2f36" stroke-width="1.5"/><circle cx="42" cy="55" r="7" fill="#fff8f0"/><rect x="90" y="34" width="44" height="52" fill="#fbbf24" stroke="#2b2f36" stroke-width="1.5"/><circle cx="112" cy="55" r="7" fill="#fff8f0"/><rect x="160" y="34" width="44" height="52" fill="#38bdf8" stroke="#2b2f36" stroke-width="1.5"/><circle cx="182" cy="55" r="7" fill="#fff8f0"/><rect x="230" y="34" width="44" height="52" fill="#a78bfa" stroke="#2b2f36" stroke-width="1.5"/><circle cx="252" cy="55" r="7" fill="#fff8f0"/><rect x="300" y="34" width="44" height="52" fill="#f472b6" stroke="#2b2f36" stroke-width="1.5"/><circle cx="322" cy="55" r="7" fill="#fff8f0"/>
+<rect x="40" y="210" width="320" height="60" fill="#8b5a2b" stroke="#2b2f36" stroke-width="3"/>
+<rect x="90" y="150" width="220" height="60" fill="#a06b3a" stroke="#2b2f36" stroke-width="3"/>
+<rect x="150" y="100" width="100" height="50" fill="#b97a3c" stroke="#2b2f36" stroke-width="3"/>
+<rect x="170" y="52" width="60" height="56" fill="#fff" stroke="#2b2f36" stroke-width="3"/><circle cx="200" cy="74" r="12" fill="#f4c7a1"/><path d="M182 104 q18 -22 36 0z" fill="#6b4fbb"/>
+<path d="M200 62 q-5 -8 0 -10 q5 2 0 10" fill="#2b2f36"/>
+<g fill="#f59e0b"><circle cx="110" cy="150" r="14"/><circle cx="290" cy="150" r="14"/><circle cx="60" cy="210" r="14"/><circle cx="340" cy="210" r="14"/><circle cx="130" cy="210" r="12"/><circle cx="270" cy="210" r="12"/></g>
+<g fill="#fde68a" stroke="#2b2f36" stroke-width="2"><rect x="150" y="120" width="12" height="30"/><rect x="238" y="120" width="12" height="30"/></g>
+<g fill="#f97316"><path d="M156 110 c6 6 6 10 0 14 c-6 -4 -6 -8 0 -14z"/><path d="M244 110 c6 6 6 10 0 14 c-6 -4 -6 -8 0 -14z"/></g>
+<ellipse cx="200" cy="200" rx="28" ry="14" fill="#d9a066" stroke="#8b5a2b" stroke-width="2"/>
+<g fill="#fff" stroke="#2b2f36" stroke-width="2"><circle cx="100" cy="195" r="13"/><circle cx="300" cy="195" r="13"/></g><g fill="#2b2f36"><circle cx="95" cy="192" r="3"/><circle cx="105" cy="192" r="3"/><circle cx="295" cy="192" r="3"/><circle cx="305" cy="192" r="3"/></g>
+<rect x="160" y="236" width="80" height="22" rx="4" fill="#38bdf8" stroke="#2b2f36" stroke-width="2"/><text x="200" y="252" font-size="12" text-anchor="middle" font-family="Arial" fill="#2b2f36">agua · sal</text>
+<path d="M40 270 l0 20 M360 270 l0 20" stroke="#2b2f36" stroke-width="3"/></svg></div><b>el altar / la ofrenda</b><span>the altar: a table with levels for the spirits</span></div><div class="vcard"><div class="vimg"><svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="160" fill="#fff8f0"/>
+<path d="M0 18 q80 10 160 0 q80 -10 160 0" stroke="#2b2f36" stroke-width="3" fill="none"/><g transform="translate(12 22)"><rect width="80" height="100" fill="#f472b6" stroke="#2b2f36" stroke-width="2"/>
+<circle cx="40" cy="30" r="12" fill="#fff8f0"/><circle cx="18" cy="60" r="7" fill="#fff8f0"/><circle cx="62" cy="60" r="7" fill="#fff8f0"/>
+<path d="M28 78 l12 -14 l12 14 l-12 14z" fill="#fff8f0"/><path d="M0 100 l10 -10 l10 10 l10 -10 l10 10 l10 -10 l10 10 l10 -10 l10 10 l10 -10 v10z" fill="#fff8f0"/></g><g transform="translate(120 22)"><rect width="80" height="100" fill="#fbbf24" stroke="#2b2f36" stroke-width="2"/>
+<circle cx="40" cy="30" r="12" fill="#fff8f0"/><circle cx="18" cy="60" r="7" fill="#fff8f0"/><circle cx="62" cy="60" r="7" fill="#fff8f0"/>
+<path d="M28 78 l12 -14 l12 14 l-12 14z" fill="#fff8f0"/><path d="M0 100 l10 -10 l10 10 l10 -10 l10 10 l10 -10 l10 10 l10 -10 l10 10 l10 -10 v10z" fill="#fff8f0"/></g><g transform="translate(228 22)"><rect width="80" height="100" fill="#38bdf8" stroke="#2b2f36" stroke-width="2"/>
+<circle cx="40" cy="30" r="12" fill="#fff8f0"/><circle cx="18" cy="60" r="7" fill="#fff8f0"/><circle cx="62" cy="60" r="7" fill="#fff8f0"/>
+<path d="M28 78 l12 -14 l12 14 l-12 14z" fill="#fff8f0"/><path d="M0 100 l10 -10 l10 10 l10 -10 l10 10 l10 -10 l10 10 l10 -10 l10 10 l10 -10 v10z" fill="#fff8f0"/></g></svg></div><b>el papel picado</b><span>cut tissue paper; it represents the wind</span></div><div class="vcard"><div class="vimg"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#fff8f0"/>
+<path d="M100 120 v60" stroke="#2f8f4e" stroke-width="6" stroke-linecap="round"/><path d="M100 150 q-25 -5 -30 15 q22 2 30 -15z M100 160 q25 -5 30 15 q-22 2 -30 -15z" fill="#4caf6a"/>
+<g fill="#f59e0b" stroke="#d97706" stroke-width="2"><ellipse cx="100" cy="100" rx="14" ry="50" transform="rotate(0 100 100)"/><ellipse cx="100" cy="100" rx="14" ry="50" transform="rotate(22 100 100)"/><ellipse cx="100" cy="100" rx="14" ry="50" transform="rotate(44 100 100)"/><ellipse cx="100" cy="100" rx="14" ry="50" transform="rotate(66 100 100)"/><ellipse cx="100" cy="100" rx="14" ry="50" transform="rotate(88 100 100)"/><ellipse cx="100" cy="100" rx="14" ry="50" transform="rotate(110 100 100)"/><ellipse cx="100" cy="100" rx="14" ry="50" transform="rotate(132 100 100)"/><ellipse cx="100" cy="100" rx="14" ry="50" transform="rotate(154 100 100)"/><ellipse cx="100" cy="100" rx="14" ry="50" transform="rotate(176 100 100)"/></g>
+<g fill="#fbbf24" stroke="#d97706" stroke-width="1.5"><ellipse cx="100" cy="100" rx="10" ry="34" transform="rotate(11 100 100)"/><ellipse cx="100" cy="100" rx="10" ry="34" transform="rotate(33 100 100)"/><ellipse cx="100" cy="100" rx="10" ry="34" transform="rotate(55 100 100)"/><ellipse cx="100" cy="100" rx="10" ry="34" transform="rotate(77 100 100)"/><ellipse cx="100" cy="100" rx="10" ry="34" transform="rotate(99 100 100)"/><ellipse cx="100" cy="100" rx="10" ry="34" transform="rotate(121 100 100)"/><ellipse cx="100" cy="100" rx="10" ry="34" transform="rotate(143 100 100)"/><ellipse cx="100" cy="100" rx="10" ry="34" transform="rotate(165 100 100)"/><ellipse cx="100" cy="100" rx="10" ry="34" transform="rotate(187 100 100)"/></g>
+<circle cx="100" cy="100" r="14" fill="#f97316"/></svg></div><b>el cempasúchil</b><span>the marigold: orange flower; its color and smell make a path</span></div><div class="vcard"><div class="vimg"><svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="200" fill="#fff8f0"/>
+<path d="M100 22 c-45 0 -62 32 -62 68 c0 26 12 40 24 50 v30 h76 v-30 c12 -10 24 -24 24 -50 c0 -36 -17 -68 -62 -68z" fill="#fff" stroke="#2b2f36" stroke-width="4"/>
+<circle cx="74" cy="92" r="18" fill="#2b2f36"/><circle cx="126" cy="92" r="18" fill="#2b2f36"/>
+<circle cx="74" cy="92" r="8" fill="#f472b6"/><circle cx="126" cy="92" r="8" fill="#38bdf8"/>
+<path d="M100 112 l-8 14 h16z" fill="#2b2f36"/>
+<path d="M76 150 h48 M84 142 v16 M96 142 v16 M108 142 v16 M118 142 v16" stroke="#2b2f36" stroke-width="3"/>
+<path d="M100 40 q10 -14 20 0 q-10 14 -20 0z M100 40 q-10 -14 -20 0 q10 14 20 0z" fill="#f59e0b"/>
+<path d="M60 60 q-12 8 0 16 M140 60 q12 8 0 16" stroke="#f472b6" stroke-width="4" fill="none"/>
+<circle cx="100" cy="70" r="5" fill="#2f8f4e"/></svg></div><b>la calavera de azúcar</b><span>the sugar skull: a happy symbol</span></div><div class="vcard"><div class="vimg"><svg viewBox="0 0 200 160" xmlns="http://www.w3.org/2000/svg"><rect width="200" height="160" fill="#fff8f0"/>
+<ellipse cx="100" cy="96" rx="78" ry="46" fill="#d9a066" stroke="#8b5a2b" stroke-width="4"/>
+<ellipse cx="100" cy="86" rx="70" ry="40" fill="#e6b47a"/>
+<path d="M100 50 q-36 10 -40 46 M100 50 q36 10 40 46 M100 50 q-8 36 -2 80 M100 50 q8 36 2 80" stroke="#b97a3c" stroke-width="7" fill="none" stroke-linecap="round"/>
+<circle cx="100" cy="50" r="12" fill="#c98a4a" stroke="#8b5a2b" stroke-width="3"/>
+<g fill="#fff" opacity=".9"><circle cx="60" cy="80" r="2.2"/><circle cx="80" cy="70" r="2.2"/><circle cx="120" cy="72" r="2.2"/><circle cx="140" cy="84" r="2.2"/><circle cx="70" cy="100" r="2.2"/><circle cx="130" cy="104" r="2.2"/><circle cx="100" cy="110" r="2.2"/><circle cx="90" cy="90" r="2.2"/><circle cx="110" cy="90" r="2.2"/></g></svg></div><b>el pan de muerto</b><span>the bread of the dead: sweet bread with bone shapes</span></div><div class="vcard"><div class="vimg"><svg viewBox="0 0 120 200" xmlns="http://www.w3.org/2000/svg"><rect width="120" height="200" fill="#fff8f0"/>
+<rect x="40" y="70" width="40" height="110" rx="6" fill="#fde68a" stroke="#2b2f36" stroke-width="3"/>
+<path d="M60 68 v-12" stroke="#2b2f36" stroke-width="3"/>
+<path d="M60 20 c14 14 16 26 0 40 c-16 -14 -14 -26 0 -40z" fill="#f97316"/><path d="M60 32 c7 8 8 14 0 22 c-8 -8 -7 -14 0 -22z" fill="#fde047"/>
+<ellipse cx="60" cy="182" rx="34" ry="8" fill="#9ca3af"/></svg></div><b>la vela</b><span>the candle: its light guides the spirits</span></div></div>
+<h3>Más palabras</h3><ul><li><b>la foto</b> · the photo</li><li><b>el agua</b> · the water</li><li><b>la sal</b> · the salt</li><li><b>los espíritus</b> · the spirits</li><li><b>los antepasados</b> · the ancestors</li><li><b>la familia</b> · the family</li><li><b>la celebración</b> · the celebration</li><li><b>la tradición</b> · the tradition</li><li><b>el viento</b> · the wind</li><li><b>recordar</b> · to remember</li><li><b>decorar</b> · to decorate</li><li><b>celebrar</b> · to celebrate</li><li><b>el 1 y el 2 de noviembre</b> · November 1 and 2</li><li><b>México</b> · Mexico</li><li><b>bonito/a</b> · pretty</li><li><b>delicioso/a</b> · delicious</li></ul>
+<div class="box conn"><b class="t">🔗 Cognates</b>Many words look like English: <i>altar, celebración, tradición, decoración, símbolo, espíritu, familia, natural, elegante, interesante, fragil, purifica</i>. Use them to understand the story.</div></div>
+
+<div class="card" id="c"><h2>✂️ Verbos: repaso rápido</h2>
+<p><b>Cut, ask, add:</b> cut -ar/-er/-ir → stem · ask who (Ana = ella, Ana y yo = nosotros) · add the ending. <b>-ar:</b> -o, -as, -a, -amos, -an · <b>-er:</b> -o, -es, -e, -emos, -en · <b>-ir:</b> -o, -es, -e, -imos, -en.</p>
+<div class="verbs">
+<div style="border-left-color:var(--blue)"><b>ser</b> soy, eres, es, somos, son · what it is</div>
+<div style="border-left-color:var(--amber)"><b>estar</b> estoy, estás, está, estamos, están · where / how it feels</div>
+<div style="border-left-color:var(--accent)"><b>tener</b> tengo, tienes, tiene, tenemos, tienen</div>
+<div style="border-left-color:var(--mag)"><b>gustar</b> me gusta (1 thing) · me gustan (plural) · le gusta</div>
+<div style="border-left-color:var(--teal)"><b>regulares</b> decorar, celebrar, recordar, mirar, preparar, vivir, comer</div>
+<div style="border-left-color:var(--accent)"><b>bota o→ue</b> volar (vuelo), poder (puedo), dormir (duermo), mover (mueve)</div>
+<div style="border-left-color:var(--accent)"><b>bota e→ie</b> querer (quiero), preferir (prefiero), pensar (pienso), entender (entiendo), cerrar (cierro)</div>
+<div style="border-left-color:var(--accent)"><b>bota e→i</b> decir (digo, dice)</div></div>
+<div class="box"><b class="t">👢 Boot verbs</b>The stem changes for yo, tú, él/ella, ellos. <b>Nosotros does not change:</b> quiero / queremos · vuelo / volamos.</div></div>
+
+<div class="card" id="d"><h2>📖 Lectura: La mosca y el papel picado</h2>
+<figure class="zoom"><svg viewBox="0 0 260 200" xmlns="http://www.w3.org/2000/svg"><rect width="260" height="200" fill="#fff8f0"/>
+<ellipse cx="90" cy="70" rx="55" ry="24" transform="rotate(-25 90 70)" fill="#d7eefb" stroke="#2b2f36" stroke-width="4"/>
+<ellipse cx="150" cy="62" rx="55" ry="24" transform="rotate(20 150 62)" fill="#d7eefb" stroke="#2b2f36" stroke-width="4"/>
+<ellipse cx="110" cy="120" rx="52" ry="34" fill="#3a4049" stroke="#2b2f36" stroke-width="4"/>
+<path d="M80 108 q20 14 40 0 M72 126 q28 16 56 0" stroke="#6b7480" stroke-width="4" fill="none"/>
+<circle cx="172" cy="126" r="34" fill="#3a4049" stroke="#2b2f36" stroke-width="4"/>
+<circle cx="180" cy="112" r="15" fill="#fff"/><circle cx="190" cy="134" r="12" fill="#fff"/>
+<circle cx="183" cy="113" r="7" fill="#2b2f36"/><circle cx="192" cy="135" r="6" fill="#2b2f36"/>
+<circle cx="186" cy="110" r="2.5" fill="#fff"/><circle cx="194" cy="132" r="2" fill="#fff"/>
+<ellipse cx="174" cy="150" rx="8" ry="11" fill="#2b2f36"/>
+<path d="M196 92 q10 -22 26 -24 M206 98 q18 -14 34 -8" stroke="#2b2f36" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+<path d="M86 150 l-14 28 M110 154 l0 30 M134 150 l14 28" stroke="#2b2f36" stroke-width="4.5" stroke-linecap="round"/>
+<circle cx="150" cy="100" r="7" fill="#e4572e"/></svg><figcaption>Lola discovers the altar.</figcaption></figure>
+<div class="box"><b class="t">📖 Reading tips</b>Cognates: <i>prepara, elegante, colores, artistas, diseños, representa, fragil, interesante, forman, espíritus, decoraciones, símbolos, natural, purifica, celebración</i>. Verbs to find: <b>vuelo, miro, tiene, hay, dice, se mueve, pienso, pone, quiero, prefiero, puedo, recordamos, le gusta, le gustan, estamos</b>.</div>
+<div class="box story"><p class="pass" id="s1">Hola. Soy Lola, la mosca. Vivo en Nueva Orleans con mi familia: la mujer, el hombre, el perro Max y el gato. Hoy es el 1 de noviembre y la familia prepara un altar para la abuela Rosa.</p><p class="pass" id="s2">Yo vuelo a la cocina y miro el altar. Tiene tres niveles. En el nivel de arriba hay una foto de la abuela. La abuela es una mujer elegante con una sonrisa grande.</p><p class="pass" id="s3">El hombre tiene papel picado de muchos colores: rosa, amarillo, azul y naranja. Él dice: «El papel picado es papel de seda (tissue paper). Los artistas cortan diseños en el papel: flores, calaveras y estrellas».</p><p class="pass" id="s4">El papel se mueve con el viento. El hombre explica: «El papel picado representa el viento y la vida. La vida es bonita, pero también es fragil, como el papel». Yo pienso: «¡Qué idea tan interesante!».</p><p class="pass" id="s5">La mujer pone flores de cempasúchil. Son naranjas y tienen un olor muy fuerte. «El color y el olor forman un camino», dice la mujer. «Los espíritus siguen el camino de flores y encuentran la casa».</p><p class="pass" id="s6">Max el perro mira las calaveras de azúcar. Son blancas con decoraciones de colores. No son calaveras tristes. Son símbolos de alegría: la muerte es parte natural de la vida.</p><p class="pass" id="s7">¡Y el pan de muerto! Es un pan dulce con formas de huesos. Quiero el pan. Prefiero el pan a las flores. Pero no puedo comer el pan. Es para la abuela.</p><p class="pass" id="s8">También hay velas, un vaso de agua y sal. Las velas dan luz y guían a los espíritus. El agua es para los espíritus, porque tienen sed después del viaje. La sal purifica.</p><p class="pass" id="s9">Por la noche, la familia enciende las velas. Nosotros recordamos a la abuela. La mujer dice: «A la abuela le gusta la música y le gustan las flores». Todos estamos contentos. No es un día triste. Es una celebración de la familia.</p></div>
+<figure class="zoom"><svg viewBox="0 0 320 160" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="160" fill="#fff8f0"/>
+<path d="M0 18 q80 10 160 0 q80 -10 160 0" stroke="#2b2f36" stroke-width="3" fill="none"/><g transform="translate(12 22)"><rect width="80" height="100" fill="#f472b6" stroke="#2b2f36" stroke-width="2"/>
+<circle cx="40" cy="30" r="12" fill="#fff8f0"/><circle cx="18" cy="60" r="7" fill="#fff8f0"/><circle cx="62" cy="60" r="7" fill="#fff8f0"/>
+<path d="M28 78 l12 -14 l12 14 l-12 14z" fill="#fff8f0"/><path d="M0 100 l10 -10 l10 10 l10 -10 l10 10 l10 -10 l10 10 l10 -10 l10 10 l10 -10 v10z" fill="#fff8f0"/></g><g transform="translate(120 22)"><rect width="80" height="100" fill="#fbbf24" stroke="#2b2f36" stroke-width="2"/>
+<circle cx="40" cy="30" r="12" fill="#fff8f0"/><circle cx="18" cy="60" r="7" fill="#fff8f0"/><circle cx="62" cy="60" r="7" fill="#fff8f0"/>
+<path d="M28 78 l12 -14 l12 14 l-12 14z" fill="#fff8f0"/><path d="M0 100 l10 -10 l10 10 l10 -10 l10 10 l10 -10 l10 10 l10 -10 l10 10 l10 -10 v10z" fill="#fff8f0"/></g><g transform="translate(228 22)"><rect width="80" height="100" fill="#38bdf8" stroke="#2b2f36" stroke-width="2"/>
+<circle cx="40" cy="30" r="12" fill="#fff8f0"/><circle cx="18" cy="60" r="7" fill="#fff8f0"/><circle cx="62" cy="60" r="7" fill="#fff8f0"/>
+<path d="M28 78 l12 -14 l12 14 l-12 14z" fill="#fff8f0"/><path d="M0 100 l10 -10 l10 10 l10 -10 l10 10 l10 -10 l10 10 l10 -10 l10 10 l10 -10 v10z" fill="#fff8f0"/></g></svg><figcaption>Papel picado: rosa, amarillo y azul.</figcaption></figure></div>
+
+<div class="card" id="e"><h2>🎬 Video</h2>
+<p>Watch the video about Día de los Muertos. Look for: <b>the dates</b>, <b>the ofrenda</b>, <b>the marigolds</b>, <b>the sugar skulls</b>, and <b>the feeling</b> of the celebration (happy or sad?).</p>
+<div class="video"><div><b>▶️ Video</b><br><a href="[PEGA AQUÍ EL LINK DEL VIDEO]" target="_blank">[PEGA AQUÍ EL LINK DEL VIDEO]</a><br><small>Headphones on. You may watch it two times.</small></div></div></div>
+
+<div class="card" id="f"><h2>📝 Quiz en Canvas</h2>
+<p>Go to Canvas → <b>Quiz: El papel picado y el altar</b>. 30 questions: vocabulary, verbs, the story, and the video. Keep this page open. <b>Submit before the end of class.</b></p>
+<p class="pill">¡Tú puedes, chica! 🪰</p></div>
+</div><button class="totop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Top</button></body></html>
