@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Repaso de verbos · Spanish 2</title>
+<style>
+:root{--blue:#2B6CD4;--teal:#0E8A8C;--coral:#E4572E;--mag:#B0379B;--amber:#D98200;--purple:#6B4FBB;--ink:#1f242b;--muted:#566170;--bg:#fbfaf7;--card:#fff;--line:#e3e7ec}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Nunito","Trebuchet MS",Arial,sans-serif;line-height:1.5;font-size:17px}
+.wrap{max-width:860px;margin:0 auto;padding:16px}
+header{display:flex;gap:16px;align-items:center;background:linear-gradient(135deg,#fff,#fff3ec);border:2px solid #f6d6c8;border-radius:18px;padding:14px 18px;margin-bottom:14px}
+header h1{margin:0;font-size:26px;line-height:1.15}
+header p{margin:4px 0 0;color:var(--muted);font-size:15px}
+.eyebrow{color:var(--coral);font-weight:800;font-size:13px;letter-spacing:.08em}
+.bar{height:12px;background:#e9edf2;border-radius:99px;overflow:hidden;margin:6px 0 16px}
+.bar div{height:100%;width:0;background:linear-gradient(90deg,var(--teal),var(--blue));transition:width .4s}
+.card{background:var(--card);border:2px solid var(--line);border-radius:16px;padding:14px 16px;margin-bottom:14px}
+.rules{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.rules .card{margin:0}
+.rules h3{margin:0 0 6px;font-size:17px}
+.c-teal{border-top:6px solid var(--teal)} .c-coral{border-top:6px solid var(--coral)} .c-blue{border-top:6px solid var(--blue)} .c-mag{border-top:6px solid var(--mag)} .c-purple{border-top:6px solid var(--purple)} .c-amber{border-top:6px solid var(--amber)}
+ol,ul{margin:4px 0 0;padding-left:20px} li{margin:2px 0}
+table{border-collapse:collapse;width:100%;font-size:15px;margin-top:6px}
+th,td{border:1px solid var(--line);padding:4px 6px;text-align:center}
+th.t{color:#fff} th.t1{background:var(--teal)} th.t2{background:var(--mag)} th.t3{background:var(--blue)}
+.boot{display:flex;gap:10px;align-items:center}
+.boot svg{flex:0 0 120px}
+.go{display:block;width:100%;margin-top:6px;background:var(--blue);color:#fff;border:0;border-radius:12px;padding:12px;font-size:18px;font-weight:800;cursor:pointer}
+.part{background:var(--card);border:2px solid var(--line);border-left:10px solid var(--c,#2B6CD4);border-radius:16px;padding:14px 16px;margin-bottom:14px;transition:opacity .3s}
+.part.locked{opacity:.45;pointer-events:none;filter:grayscale(.35)}
+.part-head{display:flex;gap:12px;align-items:flex-start}
+.badge{flex:0 0 auto;width:36px;height:36px;border-radius:50%;background:var(--c);color:#fff;font-weight:800;display:grid;place-items:center}
+.part-head h2{margin:0;font-size:21px;color:var(--c)}
+.note{margin:2px 0 0;color:var(--muted);font-size:15px}
+.lock-tag{margin-left:auto;font-size:22px}
+.item{display:flex;gap:10px;align-items:baseline;padding:8px 0;border-bottom:1px dashed var(--line)}
+.item:last-child{border-bottom:0}
+.num{flex:0 0 auto;min-width:30px;height:26px;border-radius:99px;background:#f1f4f8;color:var(--ink);font-weight:800;font-size:14px;display:inline-grid;place-items:center;padding:0 6px}
+.sent{font-size:18px}
+.sent input{font:inherit;font-weight:800;color:var(--c);width:118px;border:0;border-bottom:3px solid var(--c);background:#fff8f3;padding:2px 4px;margin:0 4px;border-radius:6px 6px 0 0}
+.sent input.ok{background:#e8f8ee;color:#15803d;border-bottom-color:#15803d}
+.sent input:focus{outline:none;background:#fff1e8}
+.hint{color:var(--muted);font-size:15px;font-weight:700}
+.plain{margin:6px 0;font-style:italic;color:var(--ink)}
+.story{background:#faf7ff;border-radius:12px;padding:6px 14px}
+.story .item{border-bottom:0}
+.actions{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:12px}
+button.check,button.btn{background:var(--c,var(--blue));color:#fff;border:0;border-radius:12px;padding:10px 16px;font-size:16px;font-weight:800;cursor:pointer}
+button.btn.alt{background:#fff;color:var(--ink);border:2px solid var(--line)}
+.msg{font-weight:800;font-size:16px}
+.msg.good{color:#15803d} .msg.bad{color:#b42318}
+.prompt{border:2px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:12px}
+.prompt h3{margin:0 0 4px;font-size:18px;display:flex;gap:8px;align-items:center}
+.ptext{margin:0 0 4px;font-weight:700}
+.ex{margin:0 0 8px;color:var(--muted);font-size:14px}
+.endings{width:auto;margin:6px 0 10px;font-size:15px}.endings th,.endings td{border:1px solid var(--line);padding:3px 10px;text-align:left}.endings th{background:#f4f1fb;color:var(--ink)}
+.sub{margin-bottom:8px}.sub label{display:block;font-size:16px}.fb{font-weight:800;font-size:15px;margin-top:3px;min-height:0}.fb.bad{color:#b42318}.fb.good{color:#15803d}
+.prompt.wrong{border-color:#f3b4ab}
+textarea,.namebox{width:100%;font:inherit;font-size:17px;border:2px solid var(--line);border-radius:12px;padding:8px 10px}
+textarea:focus,.namebox:focus{outline:none;border-color:var(--mag)}
+.namebox{max-width:420px;margin-bottom:12px}
+.rubric{font-size:15px}
+#report{display:none;margin-top:14px}
+#report textarea{min-height:260px;background:#fbfbfd;font-size:15px}
+.links{display:flex;gap:10px;flex-wrap:wrap;margin-top:8px}
+.links a{background:var(--teal);color:#fff;text-decoration:none;border-radius:12px;padding:9px 14px;font-weight:800}
+.foot{text-align:center;color:var(--muted);font-size:14px;margin:20px 0 6px}
+.mosca{flex:0 0 150px}
+@media (max-width:640px){.rules{grid-template-columns:1fr}header{flex-direction:column;text-align:center}.sent input{width:96px}.sent{font-size:17px}}
+</style></head>
+<body><div class="wrap">
+
+<header>
+  <svg class="mosca" viewBox="0 0 160 120" aria-hidden="true">
+    <ellipse cx="62" cy="34" rx="30" ry="16" fill="#cfe9f7" opacity=".9" transform="rotate(-25 62 34)"/>
+    <ellipse cx="94" cy="26" rx="20" ry="12" fill="#e4f4fb" opacity=".9" transform="rotate(15 94 26)"/>
+    <path d="M30 70 Q14 66 6 56" stroke="#9aa7b5" stroke-width="2" stroke-dasharray="4 4" fill="none"/>
+    <ellipse cx="66" cy="72" rx="32" ry="20" fill="#2a2d34"/>
+    <ellipse cx="66" cy="65" rx="22" ry="4" fill="#4a4f5a"/>
+    <circle cx="106" cy="60" r="15" fill="#2a2d34"/>
+    <circle cx="110" cy="54" r="6" fill="#E4572E"/><circle cx="110" cy="53" r="1.8" fill="#fff"/>
+    <circle cx="117" cy="62" r="5" fill="#E4572E"/>
+    <path d="M110 68 q4 3 8 0" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M58 90 l-9 14 M70 92 l-2 16 M82 90 l8 14 M96 82 l9 12 M50 84 l-6 12" stroke="#2a2d34" stroke-width="3" stroke-linecap="round"/>
+  </svg>
+  <div>
+    <div class="eyebrow">ESPAÑOL 2 · REPASO</div>
+    <h1>Repaso de verbos</h1>
+    <p>50 questions · Each part must be 100% correct to move on · Writing is graded with a rubric · ¡Tú puedes, chica!</p>
+  </div>
+</header>
+<div class="bar"><div id="bar"></div></div>
+
+<div class="rules" id="rules">
+  <div class="card c-teal"><h3>1 · Steps to conjugate</h3>
+    <ol>
+      <li><b>Cut</b> the ending: hablar → habl-, comer → com-, vivir → viv-.</li>
+      <li><b>Change</b> the name or noun to a pronoun: Ana = ella · Mi familia = ella · Mi familia y yo = nosotros · La fiesta = ella.</li>
+      <li><b>Add</b> the ending for that pronoun (table below).</li>
+      <li><b>Boot verb?</b> Change the vowel in the stem, shown in parentheses, for yo, tú, él/ella and ellos. Not for nosotros.</li>
+      <li><b>Yo-go?</b> decir → yo <b>digo</b> · tener → yo <b>tengo</b>.</li>
+    </ol>
+    <table>
+      <tr><th class="t t1">-ar</th><th class="t t2">-er</th><th class="t t3">-ir</th></tr>
+      <tr><td>-o, -as, -a, -amos, -an</td><td>-o, -es, -e, -emos, -en</td><td>-o, -es, -e, -imos, -en</td></tr>
+    </table>
+  </div>
+  <div class="card c-coral"><h3>2 · Verbos bota (boot verbs)</h3>
+    <div class="boot">
+      <svg viewBox="0 0 200 240" aria-label="Boot diagram">
+        <path d="M50 10 H120 V120 L185 150 Q198 158 190 180 L186 190 Q184 200 172 200 H50 Q30 200 30 180 V40 Q30 10 50 10 Z" fill="#FDE3DA" stroke="#E4572E" stroke-width="5"/>
+        <text x="58" y="52" font-size="16" font-weight="800" fill="#B0379B">yo</text>
+        <text x="58" y="90" font-size="16" font-weight="800" fill="#B0379B">tú</text>
+        <text x="50" y="128" font-size="16" font-weight="800" fill="#B0379B">él/ella</text>
+        <text x="128" y="176" font-size="16" font-weight="800" fill="#B0379B">ellos</text>
+        <text x="8" y="232" font-size="13" font-weight="800" fill="#0E8A8C">nosotros: outside = no change</text>
+      </svg>
+      <div>
+        <p style="margin:0 0 6px"><b>Inside the boot</b> (yo, tú, él/ella/usted, ellos/ustedes): the stem CHANGES.</p>
+        <p style="margin:0"><b>Outside the boot</b> (nosotros): NO change.</p>
+        <p style="margin:8px 0 0;font-size:15px"><b>volar</b> (o→ue): vuelo, vuelas, vuela, <b>volamos</b>, vuelan<br>
+        <b>querer</b> (e→ie): quiero, quieres, quiere, <b>queremos</b>, quieren<br>
+        <b>decir</b> (e→i, yo: -go): <b>digo</b>, dices, dice, <b>decimos</b>, dicen</p>
+      </div>
+    </div>
+  </div>
+  <div class="card c-blue"><h3>3 · Ser or estar?</h3>
+    <ul>
+      <li><b>SER</b> = what/who/where from: soy, eres, es, somos, son.</li>
+      <li><b>ESTAR</b> = where, how someone feels: estoy, estás, está, estamos, están.</li>
+      <li>¿Dónde…? always uses <b>está</b>.</li>
+    </ul>
+  </div>
+  <div class="card c-purple"><h3>4 · Tener and gustar</h3>
+    <ul>
+      <li><b>TENER</b>: tengo, tienes, tiene, tenemos, tienen. Age and hunger: Tengo quince años · Tengo hambre.</li>
+      <li><b>GUSTAR</b>: me/te/le/nos/les + <b>gusta</b> (one thing or a verb) or <b>gustan</b> (plural).</li>
+      <li>With a name: <b>A Max le gusta</b> el parque. · <b>A mis amigas les gustan</b> las películas.</li>
+    </ul>
+  </div>
+  <div class="card c-amber" style="grid-column:1/-1"><h3>How the test works</h3>
+    <p style="margin:0">Finish Part 1 with 100% correct to unlock Part 2. If any answer is wrong, the whole part clears and you start it again. Writing (Part 5) unlocks after Part 4.</p>
+    <button class="go" id="start">Start Part 1 →</button>
+  </div>
+</div>
+
+<div id="parts"></div>
+
+<section class="part locked" id="pw" style="--c:#B0379B">
+  <div class="part-head"><span class="badge">5</span><div><h2>Part 5 · Escritura (writing)</h2>
+  <p class="note">Answer in complete sentences. The page checks your writing: fix every red message, then press Submit to make your report.</p></div><span class="lock-tag">🔒</span></div>
+  <div style="margin-top:12px">
+    <label for="name"><b>Name / Nombre:</b></label><br>
+    <input class="namebox" id="name" placeholder="Your name">
+    <div id="writing"></div>
+    <div class="rubric card" style="background:#fbf7ff">
+      <b>Writing rubric (4 points per prompt, 16 total)</b>
+      <ul>
+        <li>Complete sentences that answer the question</li>
+        <li>Correct verb form and endings</li>
+        <li>Correct use of gusta / gustan (singular or plural)</li>
+        <li>Spelling, accents and cognates</li>
+      </ul>
+    </div>
+    <div class="actions"><button class="check" id="submitW" style="--c:#B0379B">Submit writing</button><span class="msg" id="wmsg"></span></div>
+    <div id="report" class="card">
+      <b>Your report</b> — copy it or download it, then send it to Señora Correa.
+      <textarea id="reportText" readonly></textarea>
+      <div class="links">
+        <button class="btn" id="copy">Copy</button>
+        <button class="btn alt" id="dl">Download .txt</button>
+        <a id="mail" href="#">Email to Señora Correa</a>
+      </div>
+      <p class="msg good" id="done"></p>
+    </div>
+  </div>
+</section>
+
+<div class="foot">Señora Correa · Mount Carmel Academy · Spanish 2</div>
+</div>
+
+<script>
+const D = {"parts": [{"id": "p1", "title": "Part 1 · Los 4 grandes", "color": "#2B6CD4", "kind": "fill", "note": "ser = who/what · estar = where/how · tener = age, have · gustar = a + name + gusta/gustan", "items": [{"s": "Ana y yo ____ de Nueva Orleans.", "v": "(ser)", "a": ["somos"]}, {"s": "La mosca Lola ____ pequeña e inteligente.", "v": "(ser)", "a": ["es"]}, {"s": "Los estudiantes de la clase ____ muy responsables.", "v": "(ser)", "a": ["son"]}, {"s": "En el hospital, mi tía, la doctora, ____ muy ocupada.", "v": "(estar)", "a": ["está", "esta"]}, {"s": "En mi casa, mi familia y yo ____ contentos hoy.", "v": "(estar)", "a": ["estamos"]}, {"s": "Las estudiantes ____ nerviosas antes del test.", "v": "(estar)", "a": ["están", "estan"]}, {"s": "Yo ____ quince años.", "v": "(tener, irregular: yo tengo)", "a": ["tengo"]}, {"s": "La fiesta ____ mucha música y comida.", "v": "(tener)", "a": ["tiene"]}, {"s": "En mi casa, mi familia y yo ____ un perro muy grande.", "v": "(tener)", "a": ["tenemos"]}, {"s": "A Max le ____ el parque.", "v": "(gustar)", "a": ["gusta"]}, {"s": "A mis amigas les ____ las películas.", "v": "(gustar)", "a": ["gustan"]}, {"s": "A mi mamá y a mí nos ____ cantar.", "v": "(gustar)", "a": ["gusta"]}]}, {"id": "p2", "title": "Part 2 · Verbos regulares (-ar, -er, -ir)", "color": "#0E8A8C", "kind": "fill", "note": "1 Cut the ending · 2 Change the name to a pronoun · 3 Add the ending", "items": [{"s": "La profesora ____ español en la clase.", "v": "(hablar)", "a": ["habla"]}, {"s": "En mi casa, mi mamá ____ música.", "v": "(escuchar)", "a": ["escucho"]}, {"s": "En mi barrio, mis amigos ____ en el parque.", "v": "(caminar)", "a": ["caminamos"]}, {"s": "Los estudiantes ____ un lápiz para el test.", "v": "(necesitar)", "a": ["necesitan"]}, {"s": "En mi casa, mi familia ____ pizza los viernes.", "v": "(comer)", "a": ["come"]}, {"s": "La mosca ____ muy rápido.", "v": "(correr)", "a": ["corre"]}, {"s": "Tú ____ muchos libros en la biblioteca.", "v": "(leer)", "a": ["lees"]}, {"s": "Mi familia ____ en Nueva Orleans.", "v": "(vivir)", "a": ["vive"]}, {"s": "Yo ____ en mi diario todos los días.", "v": "(escribir)", "a": ["escribo"]}, {"s": "Ana y Luis ____ la ventana.", "v": "(abrir)", "a": ["abren"]}]}, {"id": "p3", "title": "Part 3 · Verbos bota (boot verbs)", "color": "#E4572E", "kind": "fill", "note": "👢 Boot reminder: change the vowel INSIDE the boot (yo, tú, él/ella, ellos). Nosotros does NOT change.", "items": [{"s": "La mosca Lola ____ por la cocina.", "v": "(volar, o→ue)", "a": ["vuela"]}, {"s": "Mi amiga Sofía ____ hablar con la profesora.", "v": "(poder, o→ue)", "a": ["puede"]}, {"s": "Max el perro ____ en el sofá.", "v": "(dormir, o→ue)", "a": ["duerme"]}, {"s": "Ana y yo ____ la mesa.", "v": "(mover, o→ue)", "a": ["movemos"]}, {"s": "Los pájaros y las moscas ____ alto.", "v": "(volar, o→ue)", "a": ["vuelan"]}, {"s": "Yo ____ amigos en la universidad.", "v": "(querer, e→ie)", "a": ["quiero"]}, {"s": "Los estudiantes ____ la lección.", "v": "(entender, e→ie)", "a": ["entienden"]}, {"s": "Mi mamá ____ el café.", "v": "(preferir, e→ie)", "a": ["prefiere"]}, {"s": "Mi hermana ____ en la fiesta del sábado.", "v": "(pensar, e→ie)", "a": ["piensa"]}, {"s": "El humano ____ la puerta.", "v": "(cerrar, e→ie)", "a": ["cierra"]}, {"s": "Yo ____ «¡Hola!» a la profesora.", "v": "(decir, e→i, yo: -go)", "a": ["digo"]}, {"s": "Mi amiga Sofía ____ la verdad.", "v": "(decir, e→i)", "a": ["dice"]}, {"s": "En la clase de español, mis amigas y yo ____ mucho.", "v": "(decir, e→i)", "a": ["decimos"]}, {"s": "Los amigos ____ «¡Feliz cumpleaños!»", "v": "(decir, e→i)", "a": ["dicen"]}]}, {"id": "p4", "title": "Part 4 · Historia: La fiesta de la familia Ruiz", "color": "#6B4FBB", "kind": "story", "note": "Read the whole story first. Then fill in each blank with the correct form of the verb in parentheses.", "items": [{"s": "Hoy es la fiesta de la familia Ruiz en Nueva Orleans."}, {"s": "La mosca Lola ____ por la sala.", "v": "(volar, o→ue)", "a": ["vuela"]}, {"s": "Lola ____ muy contenta, porque hay mucha comida.", "v": "(estar)", "a": ["está", "esta"]}, {"s": "Mi amiga Sofía ____ la música con su abuela.", "v": "(escuchar)", "a": ["escucha"]}, {"s": "Los niños ____ mucha hambre.", "v": "(tener)", "a": ["tienen"]}, {"s": "El papá ____ a la mesa con la pizza.", "v": "(caminar)", "a": ["camina"]}, {"s": "La abuela ____ el chocolate.", "v": "(preferir, e→ie)", "a": ["prefiere"]}, {"s": "Max el perro ____ cansado en el sofá.", "v": "(estar)", "a": ["está", "esta"]}, {"s": "Lola ____ «¡Hola!» a todos.", "v": "(decir, e→i)", "a": ["dice"]}, {"s": "A mi familia y a mí nos ____ bailar.", "v": "(gustar)", "a": ["gusta"]}, {"s": "Al final, Lola ____ mucho a la familia.", "v": "(querer, e→ie)", "a": ["quiere"]}]}], "writing": [{"n": 47, "title": "Pregunta personal", "prompt": "Answer the question in a complete sentence: ¿Te gusta el Día de los Muertos? Si no, ¿por qué?", "model": "Sí, me gusta el Día de los Muertos porque mi familia pone fotos en el altar.", "subs": [{"label": "", "min_words": 6, "min_sentences": 1, "cond": {"if": "\\bno\\b", "then": "\\bporque\\b"}, "ph": "Sí, me gusta… / No, no me gusta… porque…", "msg": ""}]}, {"n": 48, "title": "Volar, querer, poder", "prompt": "Write 2 complete sentences. Use at least one of these verbs: volar (to fly) · querer (to want / to love) · poder (can / to be able to).", "model": "La mosca Lola vuela por la casa. Lola quiere amigos.", "subs": [{"label": "", "min_words": 5, "min_sentences": 2, "re": "\\b(vuelo|vuelas|vuela|volamos|vuelan|quiero|quieres|quiere|queremos|quieren|puedo|puedes|puede|podemos|pueden)\\b", "msg": "Use one of the verbs in the right form: vuela, quiero, puede, etc. Check the endings.", "ph": "Sentence 1… Sentence 2…"}]}, {"n": 49, "title": "Gustar: singular y plural", "prompt": "Write 2 complete sentences with gustar. Remember: gustar has only 2 forms. GUSTA (singular) is used with one thing, or when a verb comes after it: Me gusta bailar. GUSTAN (plural) is used with two or more things: Me gustan los animales. Write one sentence with gusta and one with gustan.", "subs": [{"label": "", "min_words": 4, "min_sentences": 2, "re": "\\bgusta\\b[\\s\\S]*\\bgustan\\b|\\bgustan\\b[\\s\\S]*\\bgusta\\b", "msg": "Use BOTH gusta and gustan: one sentence with each.", "ph": "Me gusta… / Me gustan…"}]}, {"n": 50, "title": "Endings: ser, hablar, comer, vivir", "prompt": "Write one complete sentence for each verb. Watch the endings! Use the table to check your form.", "table": "<tr><th>SER</th><td>soy · eres · es · somos · son</td></tr><tr><th>HABLAR (-ar)</th><td>-o · -as · -a · -amos · -an</td></tr><tr><th>COMER (-er)</th><td>-o · -es · -e · -emos · -en</td></tr><tr><th>VIVIR (-ir)</th><td>-o · -es · -e · -imos · -en</td></tr>", "subs": [{"label": "Ser:", "min_words": 3, "min_sentences": 1, "re": "\\b(soy|eres|es|somos|son)\\b", "msg": "Use a form of ser: soy, eres, es, somos or son.", "ph": "Ser sentence…"}, {"label": "Hablar:", "min_words": 3, "min_sentences": 1, "re": "\\b(hablo|hablas|habla|hablamos|hablan)\\b", "msg": "Use hablar with the right ending: hablo, hablas, habla, hablamos or hablan.", "ph": "Hablar sentence…"}, {"label": "Comer:", "min_words": 3, "min_sentences": 1, "re": "\\b(como|comes|come|comemos|comen)\\b", "msg": "Use comer with the right ending: como, comes, come, comemos or comen.", "ph": "Comer sentence…"}, {"label": "Vivir:", "min_words": 3, "min_sentences": 1, "re": "\\b(vivo|vives|vive|vivimos|viven)\\b", "msg": "Use vivir with the right ending: vivo, vives, vive, vivimos or viven.", "ph": "Vivir sentence…"}]}]};
+const parts = D.parts;
+const host = document.getElementById('parts');
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function norm(s){return s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[¡!¿?.,«»"]/g,'').replace(/\s+/g,' ').trim();}
+let n = 0;
+parts.forEach(p => p.items.forEach(it => { if (it.a) it.n = ++n; }));
+
+parts.forEach((p, pi) => {
+  const sec = document.createElement('section');
+  sec.className = 'part locked'; sec.id = p.id; sec.style.setProperty('--c', p.color);
+  sec.innerHTML = '<div class="part-head"><span class="badge">' + (pi+1) + '</span><div><h2>' + esc(p.title) + '</h2><p class="note">' + esc(p.note) + '</p></div><span class="lock-tag">🔒</span></div>';
+  const body = document.createElement('div');
+  body.className = p.kind === 'story' ? 'story' : 'items';
+  p.items.forEach((it, ii) => {
+    const row = document.createElement('div'); row.className = 'item';
+    if (!it.a) { row.innerHTML = '<p class="plain">' + esc(it.s) + '</p>'; body.appendChild(row); return; }
+    const sp = it.s.split('____');
+    row.innerHTML = '<span class="num">' + it.n + '</span><span class="sent">' + esc(sp[0]) +
+      '<input id="' + p.id + '-' + ii + '" autocomplete="off" aria-label="Question ' + it.n + '">' +
+      esc(sp[1] || '') + ' <span class="hint">' + esc(it.v) + '</span></span>';
+    body.appendChild(row);
+  });
+  sec.appendChild(body);
+  const bar = document.createElement('div'); bar.className = 'actions';
+  bar.innerHTML = '<button class="check" data-part="' + pi + '" style="--c:' + p.color + '">Check Part ' + (pi+1) + '</button><span class="msg" id="msg-' + p.id + '"></span>';
+  sec.appendChild(bar);
+  host.appendChild(sec);
+});
+
+function unlock(i){
+  if (i >= parts.length) {
+    const w = document.getElementById('pw'); w.classList.remove('locked');
+    w.scrollIntoView({behavior:'smooth', block:'start'}); return;
+  }
+  const sec = document.getElementById(parts[i].id);
+  sec.classList.remove('locked');
+  const first = sec.querySelector('input'); if (first) first.focus();
+  sec.scrollIntoView({behavior:'smooth', block:'start'});
+}
+function updateBar(){
+  const done = document.querySelectorAll('.part.done').length;
+  document.getElementById('bar').style.width = (done / (parts.length + 1) * 100) + '%';
+}
+function check(pi){
+  const p = parts[pi], sec = document.getElementById(p.id), msg = document.getElementById('msg-' + p.id);
+  const inputs = [], wrong = [];
+  p.items.forEach((it, ii) => {
+    if (!it.a) return;
+    const inp = document.getElementById(p.id + '-' + ii);
+    inputs.push(inp);
+    if (!it.a.some(a => norm(a) === norm(inp.value))) wrong.push(it.n);
+  });
+  if (wrong.length === 0) {
+    inputs.forEach(i => { i.readOnly = true; i.classList.add('ok'); });
+    sec.classList.add('done');
+    sec.querySelector('.lock-tag').textContent = '✅';
+    msg.className = 'msg good'; msg.textContent = '¡Perfecto, chica! Part complete. Next part unlocked.';
+    unlock(pi + 1); updateBar();
+  } else {
+    inputs.forEach(i => { i.value = ''; });
+    msg.className = 'msg bad';
+    msg.textContent = 'Casi. Wrong: #' + wrong.join(', ') + '. Start the WHOLE part again from the beginning. ¡Tú puedes!';
+    inputs[0].focus();
+  }
+}
+document.getElementById('start').addEventListener('click', () => { unlock(0); document.getElementById('start').disabled = true; });
+host.addEventListener('click', e => {
+  const b = e.target.closest('button.check'); if (b) check(+b.dataset.part);
+});
+
+// Writing
+const wbox = document.getElementById('writing');
+D.writing.forEach((w, wi) => {
+  const div = document.createElement('div'); div.className = 'prompt'; div.id = 'pr-' + wi;
+  let html = '<h3><span class="num">' + w.n + '</span> ' + esc(w.title) + '</h3><p class="ptext">' + esc(w.prompt) + '</p>';
+  if (w.model) html += '<p class="ex">Model (do not copy): <i>' + esc(w.model) + '</i></p>';
+  if (w.table) html += '<table class="endings">' + w.table + '</table>';
+  w.subs.forEach((s, si) => {
+    html += '<div class="sub">' + (s.label ? '<label><b>' + esc(s.label) + '</b></label>' : '') +
+      '<textarea id="w-' + wi + '-' + si + '" rows="2" placeholder="' + esc(s.ph || 'Write a complete sentence…') + '"></textarea>' +
+      '<div class="fb" id="fb-' + wi + '-' + si + '"></div></div>';
+  });
+  div.innerHTML = html; wbox.appendChild(div);
+});
+function checkSub(s, text){
+  const t = text.trim();
+  if (!t) return 'Write your answer here.';
+  if (t.split(/\s+/).length < s.min_words) return 'Too short. Write a complete sentence (at least ' + s.min_words + ' words).';
+  const sents = t.split(/[.!?]+/).filter(x => x.trim()).length;
+  if (sents < (s.min_sentences || 1)) return 'Write ' + s.min_sentences + ' complete sentences. End each one with a period.';
+  const nt = norm(t);
+  if (s.re && !new RegExp(s.re).test(nt)) return s.msg;
+  if (s.cond && new RegExp(s.cond.if).test(nt) && !new RegExp(s.cond.then).test(nt)) return 'Add porque and your reason.';
+  return '';
+}
+function setFb(id, text){
+  const el = document.getElementById(id);
+  el.textContent = text ? '✖ ' + text : '✔ Good';
+  el.className = 'fb ' + (text ? 'bad' : 'good');
+}
+let reportBody = '';
+document.getElementById('submitW').addEventListener('click', () => {
+  const wm = document.getElementById('wmsg');
+  const name = document.getElementById('name').value.trim();
+  if (!name) { wm.className = 'msg bad'; wm.textContent = 'Write your name first.'; return; }
+  let errors = 0; const answers = [];
+  D.writing.forEach((w, wi) => {
+    const lines = [];
+    w.subs.forEach((s, si) => {
+      const txt = document.getElementById('w-' + wi + '-' + si).value;
+      const err = checkSub(s, txt);
+      setFb('fb-' + wi + '-' + si, err);
+      if (err) errors++;
+      lines.push((s.label ? s.label + ' ' : '') + txt.trim());
+    });
+    document.getElementById('pr-' + wi).classList.toggle('wrong', lines.length && D.writing[wi].subs.some((s, si) => document.getElementById('fb-' + wi + '-' + si).classList.contains('bad')));
+    answers.push(lines);
+  });
+  if (errors) { wm.className = 'msg bad'; wm.textContent = 'Fix the red messages, then press Submit again.'; return; }
+  const date = new Date().toLocaleDateString('en-US');
+  let t = 'Repaso de verbos · Spanish 2\nName: ' + name + '\nDate: ' + date + '\nParts 1–4: completed with 100% accuracy\n\nPART 5 · WRITING\n';
+  D.writing.forEach((w, wi) => { t += '\n' + w.n + '. ' + w.title + '\n' + answers[wi].join('\n') + '\n'; });
+  reportBody = t;
+  document.getElementById('reportText').value = t;
+  document.getElementById('report').style.display = 'block';
+  document.getElementById('done').textContent = '';
+  document.getElementById('mail').href = 'mailto:cvcorrea@mcacubs.org?subject=' + encodeURIComponent('Repaso de verbos - ' + name) +
+    '&body=' + encodeURIComponent('Paste your copied report here. / Pega aquí tu reporte copiado.');
+  wm.className = 'msg good'; wm.textContent = '¡Muy bien! Copy or download your report.';
+  document.getElementById('pw').classList.add('done'); updateBar();
+  document.getElementById('report').scrollIntoView({behavior:'smooth'});
+});
+document.getElementById('copy').addEventListener('click', () => {
+  const ta = document.getElementById('reportText');
+  const ok = () => document.getElementById('done').textContent = '¡Copiado! Paste it in an email to Señora Correa.';
+  if (navigator.clipboard) navigator.clipboard.writeText(reportBody).then(ok).catch(() => { ta.select(); document.execCommand('copy'); ok(); });
+  else { ta.select(); document.execCommand('copy'); ok(); }
+});
+document.getElementById('dl').addEventListener('click', () => {
+  const name = document.getElementById('name').value.trim().replace(/\s+/g, '_') || 'alumna';
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([reportBody], {type:'text/plain'}));
+  a.download = 'Repaso_Verbos_' + name + '.txt'; document.body.appendChild(a); a.click(); a.remove();
+});
+</script>
+</body></html>
